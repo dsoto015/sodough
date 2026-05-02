@@ -1,0 +1,50 @@
+.header {
+  background: var(--color-cream);
+  color: var(--color-brown);
+}
+
+/* THIS is the key */
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto; 
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav {
+  display: flex;
+  gap: 8px;
+}
+
+//custom tonal button
+.nav a[mat-flat-button] {
+  background: #4e342e; 
+  color: #ffffff;
+}
+
+.main {
+  min-height: calc(100vh - 140px);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.9rem;
+  color: #6d4c41;
+  background: #fff7f0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body {
+  background: #fff7f0;
+}

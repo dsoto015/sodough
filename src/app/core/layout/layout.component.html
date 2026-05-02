@@ -1,0 +1,25 @@
+<mat-toolbar class="header">
+  <div class="header-inner">
+    <p class="logo" routerLink="/">
+      SoDough Bakery
+    </p>
+
+    <span class="spacer"></span>
+
+    <nav class="nav">
+      <a mat-button routerLink="/">Home</a>
+      <a mat-button routerLink="/menu">Menu</a>
+      <a mat-button routerLink="/gallery">Gallery</a>
+      <a mat-button routerLink="/review">Reviews</a>
+      <a mat-flat-button routerLink="/order">Order</a>
+    </nav>
+  </div>
+</mat-toolbar>
+
+<main class="main">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  <p>Fresh baked sourdough • Laguna Niguel</p>
+</footer>
