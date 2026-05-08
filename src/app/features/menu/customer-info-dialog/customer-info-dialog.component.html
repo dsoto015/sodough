@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Customer Info</h2>
+
+<mat-dialog-content class="customer-form">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="customer.name" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" [(ngModel)]="customer.email" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Phone</mat-label>
+    <input matInput type="tel" [(ngModel)]="customer.phone">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Pickup Date</mat-label>
+    <input matInput type="date" [(ngModel)]="customer.pickupDate">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Notes</mat-label>
+    <textarea matInput rows="3" [(ngModel)]="customer.notes"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>
+    Cancel
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!customer.name || !customer.email"
+    (click)="sendOrder()"
+  >
+    Order
+  </button>
+</mat-dialog-actions>

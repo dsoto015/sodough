@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Your Order</h2>
+
+<mat-dialog-content>
+  <div *ngIf="cart().length; else emptyCart">
+    <div class="cart-item" *ngFor="let item of cart()">
+      <div class="item-info">
+        <strong>{{ item.name }}</strong>
+
+        <p>{{ item.quantity }} × {{ item.price | currency }}</p>
+      </div>
+
+      <div class="quantity-controls">
+        <button mat-icon-button (click)="decrementItem(item)">
+          <mat-icon>remove</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="incrementItem(item)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+      <span class="line-total">
+        {{ item.price * item.quantity | currency }}
+      </span>
+    </div>
+
+    <p class="total">
+      Estimated Total: {{ orderTotal() | currency }}
+    </p>
+  </div>
+
+  <ng-template #emptyCart>
+    <p>Your order is empty.</p>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>
+    Keep Shopping
+  </button>
+
+  <button mat-raised-button color="primary" [disabled]="itemCount() === 0" (click)="requestOrder()">
+    Request Order
+  </button>
+</mat-dialog-actions>

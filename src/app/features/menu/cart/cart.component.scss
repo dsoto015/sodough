@@ -1,0 +1,47 @@
+.menu-header {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.menu-title {
+  margin-bottom: 0;
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.cart-button {
+  position: absolute;
+  right: 0;
+  color: var(--color-brown);
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.item-info p {
+  margin: 4px 0 0;
+}
+
+.quantity-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.line-total {
+  min-width: 72px;
+  text-align: right;
+}
