@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "build": "ng build --configuration production --base-href /",
+    "deploy": "npx angular-cli-ghpages --dir=dist/sodough/browser --cname=sodoughbakery.com",
+    "publish": "npm run build && npm run deploy"
   },
   "private": true,
   "dependencies": {
