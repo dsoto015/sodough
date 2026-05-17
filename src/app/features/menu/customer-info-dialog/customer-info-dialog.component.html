@@ -7,11 +7,6 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Email</mat-label>
-    <input matInput type="email" [(ngModel)]="customer.email" required>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
     <mat-label>Phone</mat-label>
     <input matInput type="tel" [(ngModel)]="customer.phone">
   </mat-form-field>
@@ -32,12 +27,6 @@
     Cancel
   </button>
 
-  <button
-    mat-raised-button
-    color="primary"
-    [disabled]="!customer.name || !customer.email"
-    (click)="sendOrder()"
-  >
-    Order
-  </button>
+  <button mat-raised-button color="primary" [disabled]="!customer.name" (click)="sendText()">Order</button>
+  
 </mat-dialog-actions>
