@@ -11,15 +11,6 @@
       <a mat-button routerLink="/about-us">About Us</a>
       <a mat-button routerLink="/reviews">Reviews</a>
       <a mat-flat-button routerLink="/menu">Order</a>
-
-      <button mat-icon-button 
-              matBadgeColor="accent"
-              aria-label="Open cart"
-              [matBadge]="itemCount()" 
-              [matBadgeHidden]="itemCount() === 0"
-              (click)="openCart()">
-        <mat-icon>shopping_cart</mat-icon>
-      </button>
     </nav>
   </div>
 </mat-toolbar>
