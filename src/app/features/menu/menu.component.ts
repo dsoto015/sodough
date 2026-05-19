@@ -1,16 +1,19 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { CartService } from '../../core/cart.service';
 import { CartItem, MenuItem, MenuItemOption } from '../../core/models/menu.models';
+import { CartComponent } from './cart/cart.component';
 
 @Component({
   selector: 'app-menu',
@@ -31,7 +34,20 @@ export class MenuComponent {
   
   private readonly cartService = inject(CartService);
   private _snackbar = inject(MatSnackBar);
+  private readonly dialog = inject(MatDialog);
+  private breakpointObserver = inject(BreakpointObserver);
 
+  constructor() {
+    this.breakpointObserver
+      .observe([Breakpoints.Handset])
+      .pipe(takeUntilDestroyed())
+      .subscribe(result => {
+        this.isMobile.set(result.matches);
+      });
+  }
+
+  isMobile = signal(false);
+  fabRaised = signal(false);
   cart = this.cartService.cartItems;
   orderTotal = this.cartService.total;
   cartItemCount = this.cartService.itemCount;
@@ -96,7 +112,11 @@ export class MenuComponent {
   }  
 
   addToOrder(item: MenuItem): void {
-  const selectedOption = this.getSelectedOption(item);
+    const selectedOption = this.getSelectedOption(item);
+
+    if (this.isMobile()) {
+      this.fabRaised.set(true);
+    }
 
     const cartItem: CartItem = {
       id: item.id,
@@ -116,10 +136,22 @@ export class MenuComponent {
     snackBarRef.onAction().subscribe(() => {
       this.undoCartAdd(cartItem);
     });
+
+    snackBarRef.afterDismissed().subscribe(() => {
+      if (this.isMobile()) {
+        this.fabRaised.set(false);
+      }
+    });
   }
 
   undoCartAdd(cartItem: CartItem): void {
     this.cartService.decreaseQuantity(cartItem);
   }
-  
+
+  openCart(): void {
+    this.dialog.open(CartComponent, {
+      width: '420px',
+      maxWidth: '95vw'
+    });
+  }
 }

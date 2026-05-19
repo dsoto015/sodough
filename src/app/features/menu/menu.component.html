@@ -26,5 +26,12 @@
         </button>
       </mat-card-actions>
     </mat-card>
+    <button mat-fab class="cart-fab" 
+            [matBadge]="cartItemCount()" 
+            [matBadgeHidden]="cartItemCount() === 0"
+            [class.raised]="fabRaised()"
+            (click)="openCart()">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
   </div>
 </section>

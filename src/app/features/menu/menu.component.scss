@@ -105,6 +105,17 @@ mat-card-actions {
   margin-left: 15px;
 }
 
+.cart-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 30px;
+  z-index: 1000;
+}
+
+.cart-fab.raised {
+  bottom: 65px;
+}
+
 /* Tablet */
 @media (max-width: 900px) {
   .menu-grid {
