@@ -135,6 +135,9 @@ export class MenuComponent {
 
     snackBarRef.onAction().subscribe(() => {
       this.undoCartAdd(cartItem);
+      if (this.isMobile()) {
+        this.fabRaised.set(false);
+      }
     });
 
     snackBarRef.afterDismissed().subscribe(() => {
