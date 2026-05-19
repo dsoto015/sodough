@@ -10,7 +10,14 @@
       <mat-card-content>
         <h2>{{ item.name }}</h2>
         <p>{{ item.description }}</p>
-        <span class="price">{{ item.displayPrice }}</span>
+        <span class="price">
+          {{ getDisplayPrice(item) }}
+        </span>
+
+        <mat-button-toggle-group class="pack-toggle" *ngIf="item.options?.length" [value]="getSelectedOption(item)" (change)="selectOption(item, $event.value)">
+          <mat-button-toggle *ngFor="let option of item.options" [value]="option"> {{ option.label }} </mat-button-toggle>
+        </mat-button-toggle-group>
+
       </mat-card-content>
 
       <mat-card-actions>

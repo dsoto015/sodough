@@ -17,24 +17,20 @@ export class CartService {
     this.cart().reduce((total, item) => total + item.price * item.quantity, 0)
   );
 
-  addItem(item: MenuItem): void {
+  addItem(item: CartItem): void {
     this.cart.update(cart => {
-      const existingItem = cart.find(cartItem => cartItem.id === item.id);
+      const existingItem = cart.find(cartItem =>
+        cartItem.cartId === item.cartId
+      );
 
       if (!existingItem) {
-        return [
-          ...cart,
-          {
-            id: item.id,
-            name: item.name,
-            price: item.price,
-            quantity: 1
-          }
-        ];
+        return [...cart, item];
       }
 
       return cart.map(cartItem =>
-        cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
+        cartItem.cartId === item.cartId
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
       );
     });
   }
@@ -42,22 +38,28 @@ export class CartService {
   increaseQuantity(item: CartItem): void {
     this.cart.update(cart =>
       cart.map(cartItem =>
-        cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
+        cartItem.cartId === item.cartId
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
       )
     );
   }
 
   decreaseQuantity(item: CartItem): void {
     this.cart.update(cart =>
-      cart.map(cartItem => 
-        cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity - 1 }: cartItem
+      cart.map(cartItem =>
+          cartItem.cartId === item.cartId
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
         ).filter(cartItem => cartItem.quantity > 0)
     );
   }
 
-  removeItem(id: number): void {
-    this.cart.update(cart => cart.filter(item => item.id !== id));
-  }
+  removeItem(cartId: string): void {
+    this.cart.update(cart =>
+      cart.filter(item => item.cartId !== cartId)
+    );
+  }  
 
   clearCart(): void {
     this.cart.set([]);

@@ -27,9 +27,18 @@
 
 .cart-item {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 12px;
+}
+
+.item-info {
+  min-width: 0;
+}
+
+.item-info strong {
+  display: block;
+  overflow-wrap: break-word;
 }
 
 .item-info p {

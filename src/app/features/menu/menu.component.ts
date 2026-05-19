@@ -6,10 +6,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { CartService } from '../../core/cart.service';
-import { MenuItem } from '../../core/models/menu.models';
-
+import { CartItem, MenuItem, MenuItemOption } from '../../core/models/menu.models';
 
 @Component({
   selector: 'app-menu',
@@ -19,7 +20,8 @@ import { MenuItem } from '../../core/models/menu.models';
              MatButtonModule,
              MatIconModule,
              MatBadgeModule,
-             MatDialogModule 
+             MatDialogModule,
+             MatButtonToggleModule
             ],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
@@ -28,10 +30,12 @@ import { MenuItem } from '../../core/models/menu.models';
 export class MenuComponent {
   
   private readonly cartService = inject(CartService);
+  private _snackbar = inject(MatSnackBar);
 
   cart = this.cartService.cartItems;
   orderTotal = this.cartService.total;
   cartItemCount = this.cartService.itemCount;
+  selectedOptions: Record<number, MenuItemOption> = {};
 
   menuItems: MenuItem[] = [
     {
@@ -56,14 +60,66 @@ export class MenuComponent {
       id: 3,
       name: 'Chocolate Chip Cookies',
       description: 'Soft, buttery cookies with rich chocolate and a hint of sea salt. Baked fresh weekly.',
-      price: 6,
-      displayPrice: '$6 / 6-pack',
+      price: 10,
       image: './images/bread/menu/cookies_1.png',
-      alt: 'Chocolate chip cookies'
+      alt: 'Chocolate chip cookies',
+      options: [
+        {
+          label: '4-pack',
+          price: 8,
+          displayPrice: '$8 / 4-pack'
+        },
+        {
+          label: '6-pack',
+          price: 11,
+          displayPrice: '$11 / 6-pack'
+        },
+        {
+          label: '10-pack',
+          price: 15,
+          displayPrice: '$15 / 10-pack'
+        }
+      ]
     }
   ];
 
-  addToOrder(item: MenuItem): void {
-    this.cartService.addItem(item);
+  getSelectedOption(item: MenuItem): MenuItemOption | undefined {
+    return item.options ? this.selectedOptions[item.id] ?? item.options[0] : undefined;
   }
+
+  selectOption(item: MenuItem, option: MenuItemOption): void {
+    this.selectedOptions[item.id] = option;
+  }
+
+  getDisplayPrice(item: MenuItem): string {
+    return this.getSelectedOption(item)?.displayPrice ?? item.displayPrice ?? `$${item.price}`;
+  }  
+
+  addToOrder(item: MenuItem): void {
+  const selectedOption = this.getSelectedOption(item);
+
+    const cartItem: CartItem = {
+      id: item.id,
+      cartId: selectedOption
+        ? `${item.id}-${selectedOption.label}`
+        : `${item.id}`,
+      name: selectedOption
+        ? `${item.name} (${selectedOption.label})`
+        : item.name,
+      price: selectedOption?.price ?? item.price,
+      quantity: 1
+    };
+
+    this.cartService.addItem(cartItem);
+    const snackBarRef = this._snackbar.open(cartItem.name + " added to cart!", "Undo", { duration: 3000 });
+
+    snackBarRef.onAction().subscribe(() => {
+      this.undoCartAdd(cartItem);
+    });
+  }
+
+  undoCartAdd(cartItem: CartItem): void {
+    this.cartService.decreaseQuantity(cartItem);
+  }
+  
 }
