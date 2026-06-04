@@ -58,6 +58,15 @@
     font-weight: 600;
     color: #3e2723;
   }
+
+  .action-buttons {
+    display: flex;
+
+    .instructions {
+      background: var(--color-text-secondary);
+      color: var(--color-background);
+    }
+  }
 }
 
 mat-card-actions {

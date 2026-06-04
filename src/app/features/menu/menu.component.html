@@ -20,11 +20,20 @@
 
       </mat-card-content>
 
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="addToOrder(item)">
-          Add to Order
-        </button>
-      </mat-card-actions>
+      <div class="action-buttons">      
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="addToOrder(item)">
+            Add to Order
+          </button>
+        </mat-card-actions>
+        
+        <mat-card-actions>
+          <button *ngIf="item.id === 4" class="instructions" mat-raised-button (click)="openInstructions()">
+            Open Instructions
+          </button>
+        </mat-card-actions>
+
+      </div>
     </mat-card>
     <button mat-fab class="cart-fab" 
             [matBadge]="cartItemCount()" 

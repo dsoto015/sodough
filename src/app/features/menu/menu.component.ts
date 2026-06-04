@@ -30,7 +30,7 @@ import { CartComponent } from './cart/cart.component';
   styleUrls: ['./menu.component.scss']
 })
 
-export class MenuComponent {
+export class MenuComponent {  
   
   private readonly cartService = inject(CartService);
   private _snackbar = inject(MatSnackBar);
@@ -96,6 +96,15 @@ export class MenuComponent {
           displayPrice: '$15 / 10-pack'
         }
       ]
+    },
+    {
+      id: 4,
+      name: 'Mature Sourdough Starter',
+      description: '25g of 100 year old starter. Just add equal parts water and flour.',
+      price: 8,
+      displayPrice: '$8',
+      image: './images/bread/menu/starter.jpg',
+      alt: 'Sourdough starter'
     }
   ];
 
@@ -157,4 +166,9 @@ export class MenuComponent {
       maxWidth: '95vw'
     });
   }
+
+  openInstructions() {
+    window.open('/docs/instructions.pdf', '_blank');
+  }
+
 }
