@@ -36,6 +36,7 @@ export class MenuComponent {
   private _snackbar = inject(MatSnackBar);
   private readonly dialog = inject(MatDialog);
   private breakpointObserver = inject(BreakpointObserver);
+  private activeSnackBarRef: any = null;
 
   constructor() {
     this.breakpointObserver
@@ -141,16 +142,18 @@ export class MenuComponent {
 
     this.cartService.addItem(cartItem);
     const snackBarRef = this._snackbar.open(cartItem.name + " added to cart!", "Undo", { duration: 3000 });
+    this.activeSnackBarRef = snackBarRef;
 
     snackBarRef.onAction().subscribe(() => {
       this.undoCartAdd(cartItem);
-      if (this.isMobile()) {
+      if (this.isMobile() && this.cartItemCount() === 0) {
         this.fabRaised.set(false);
       }
     });
 
     snackBarRef.afterDismissed().subscribe(() => {
-      if (this.isMobile()) {
+      if (this.isMobile() && this.activeSnackBarRef === snackBarRef) {
+        this.activeSnackBarRef = null;
         this.fabRaised.set(false);
       }
     });
