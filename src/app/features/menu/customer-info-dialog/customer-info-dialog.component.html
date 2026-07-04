@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>Customer Info</h2>
-
+<p class="pickup-note">Pick up between 3pm-8pm</p>
 <mat-dialog-content class="customer-form">
   <mat-form-field appearance="outline">
     <mat-label>Name</mat-label>
@@ -13,7 +13,9 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Pickup Date</mat-label>
-    <input matInput type="date" [(ngModel)]="customer.pickupDate">
+    <input matInput [matDatepicker]="pickupDatePicker" [min]="minPickupDate" [(ngModel)]="customer.pickupDate" required>
+    <mat-datepicker-toggle matSuffix [for]="pickupDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #pickupDatePicker></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
