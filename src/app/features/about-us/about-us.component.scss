@@ -1,0 +1,498 @@
+.about-us {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 3rem 1.5rem 4rem;
+	display: grid;
+	gap: 2rem;
+}
+
+.hero-split {
+	display: grid;
+	grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+	gap: 1.75rem;
+	align-items: start;
+}
+
+.hero-copy,
+.hero-card,
+.mosaic-card {
+	border-radius: 2rem;
+	background: #fff;
+	box-shadow: 0 24px 50px rgba(74, 52, 32, 0.12);
+}
+
+.hero-copy {
+	padding: 2.5rem 2.5rem 3rem;
+	background: linear-gradient(145deg, #fff6ed 0%, #fdf1e6 100%);
+	display: grid;
+	gap: 1.25rem;
+}
+
+.eyebrow {
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: #a05c36;
+}
+
+.hero-copy h1 {
+	margin: 0;
+	font-size: clamp(2.3rem, 3vw, 3.4rem);
+	line-height: 1.08;
+	color: #382416;
+}
+
+.about-lead {
+	margin: 0;
+	font-size: 1.05rem;
+	line-height: 1.8;
+	color: #5d4433;
+}
+
+.hero-tags {
+	display: grid;
+	flex-wrap: wrap;
+	gap: 0.8rem;
+}
+
+.hero-tags span {
+	padding: 0.75rem 1.1rem;
+	background: #f7dfc6;
+	color: #724c2f;
+	font-size: 0.92rem;
+	font-weight: 600;
+	border-radius: 999px;
+}
+
+.hero-stack {
+	display: grid;
+	grid-template-columns: minmax(240px, 1fr) minmax(320px, 1.2fr);
+	grid-template-rows: auto 1fr;
+	gap: 1rem;
+}
+
+.hero-card--note {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.hero-card--stat {
+	grid-column: 1;
+	grid-row: 2;
+}
+
+.hero-card--image {
+	grid-column: 2;
+	grid-row: 1 / span 2;
+	overflow: hidden;
+	min-height: 100%;
+	align-self: stretch;
+}
+
+.hero-card--image img {
+	width: 100%;
+	height: auto;
+	object-fit: contain; 
+}
+
+.hero-card--image mat-card-content {
+	padding: 1.5rem 1.75rem 1.75rem;
+}
+
+.hero-card--image h2 {
+	margin: 0 0 0.75rem;
+	font-size: 1.65rem;
+	color: #3f2a1e;
+}
+
+.hero-card--image p {
+	margin: 0;
+	color: #6a4f3f;
+	line-height: 1.75;
+}
+
+.hero-card--note {
+	padding: 1.75rem 1.65rem;
+	background: #fff1e2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	min-height: 160px;
+}
+
+.hero-card--note p {
+	margin: 0;
+	color: #5a3f31;
+	font-size: 1rem;
+	line-height: 1.8;
+}
+
+.hero-card--stat {
+	padding: 1.4rem 1.6rem;
+	background: #fff3e4;
+	min-height: 140px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.hero-card--stat p {
+	margin: 0;
+	color: #5c3f2e;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.7;
+}
+
+.about-mosaic {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.5rem;
+}
+
+.mosaic-card {
+	padding: 1.8rem 2rem;
+}
+
+.mosaic-card--story,
+.mosaic-card--beliefs {
+	min-height: 220px;
+}
+
+.mosaic-card--beliefs {
+	background: linear-gradient(180deg, #fff6f1 0%, #f9e7d9 100%);
+}
+
+.mosaic-card--quote {
+	display: grid;
+	align-items: center;
+	justify-items: center;
+	text-align: center;
+	min-height: 220px;
+	background: #fde9d4;
+}
+
+.mosaic-card--wide {
+	grid-column: 1 / -1;
+}
+
+.mosaic-card h3 {
+	margin: 0 0 1rem;
+	font-size: 1.45rem;
+	color: #3a2315;
+}
+
+.mosaic-card p {
+	margin: 0;
+	color: #5e4435;
+	line-height: 1.75;
+}
+
+.mosaic-card ul {
+	margin: 1rem 0 0;
+	padding-left: 1.2rem;
+	color: #5e4435;
+}
+
+.mosaic-card li {
+	margin-bottom: 0.85rem;
+}
+
+.quote-text {
+	margin: 0;
+	font-size: 1.1rem;
+	font-style: italic;
+	line-height: 1.8;
+	color: #5d3e29;
+}
+
+@media (max-width: 900px) {
+	.hero-split,
+	.about-mosaic,
+	.hero-stack {
+		grid-template-columns: 1fr;
+	}
+
+	.hero-card--note,
+	.hero-card--stat,
+	.hero-card--image {
+		min-height: auto;
+	}
+
+	.hero-card--image {
+		grid-column: auto;
+		grid-row: auto;
+	}
+
+	.mosaic-card--wide {
+		grid-column: auto;
+	}
+}
+
+@media (max-width: 600px) {
+	.about-us {
+		padding: 2rem 1rem 3rem;
+	}
+
+	.hero-copy,
+	.hero-card,
+	.mosaic-card {
+		padding: 1.5rem;
+	}
+
+	.hero-tags {
+		flex-direction: column;
+	}
+}
+.about-us {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 3rem 1.5rem 4rem;
+	display: grid;
+	gap: 2rem;
+}
+
+.hero-split {
+	display: grid;
+	grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+	gap: 1.75rem;
+	align-items: start;
+}
+
+.hero-copy,
+.hero-card,
+.mosaic-card {
+	border-radius: 2rem;
+	background: #fff;
+	box-shadow: 0 24px 50px rgba(74, 52, 32, 0.12);
+}
+
+.hero-copy {
+	padding: 2.5rem 2.5rem 3rem;
+	background: linear-gradient(145deg, #fff6ed 0%, #fdf1e6 100%);
+	display: grid;
+	gap: 1.25rem;
+}
+
+.eyebrow {
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: #a05c36;
+}
+
+.hero-copy h1 {
+	margin: 0;
+	font-size: clamp(2.3rem, 3vw, 3.4rem);
+	line-height: 1.08;
+	color: #382416;
+}
+
+.about-lead {
+	margin: 0;
+	font-size: 1.05rem;
+	line-height: 1.8;
+	color: #5d4433;
+}
+
+.hero-tags {
+	display: grid;
+	flex-wrap: wrap;
+	gap: 0.8rem;
+}
+
+.hero-tags span {
+	padding: 0.75rem 1.1rem;
+	background: #f7dfc6;
+	color: #724c2f;
+	font-size: 0.92rem;
+	font-weight: 600;
+	border-radius: 999px;
+}
+
+.hero-stack {
+	display: grid;
+	grid-template-columns: minmax(240px, 1fr) minmax(320px, 1.2fr);
+	grid-template-rows: auto 1fr;
+	gap: 1rem;
+}
+
+.hero-card--note {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.hero-card--stat {
+	grid-column: 1;
+	grid-row: 2;
+}
+
+.hero-card--image {
+	grid-column: 2;
+	grid-row: 1 / span 2;
+	overflow: hidden;
+	min-height: 100%;
+	align-self: stretch;
+}
+
+.hero-card--image img {
+	width: 100%;
+	height: auto;
+	object-fit: contain; 
+}
+
+.hero-card--image mat-card-content {
+	padding: 1.5rem 1.75rem 1.75rem;
+}
+
+.hero-card--image h2 {
+	margin: 0 0 0.75rem;
+	font-size: 1.65rem;
+	color: #3f2a1e;
+}
+
+.hero-card--image p {
+	margin: 0;
+	color: #6a4f3f;
+	line-height: 1.75;
+}
+
+.hero-card--note {
+	padding: 1.75rem 1.65rem;
+	background: #fff1e2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	min-height: 160px;
+}
+
+.hero-card--note p {
+	margin: 0;
+	color: #5a3f31;
+	font-size: 1rem;
+	line-height: 1.8;
+}
+
+.hero-card--stat {
+	padding: 1.4rem 1.6rem;
+	background: #fff3e4;
+	min-height: 140px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.hero-card--stat p {
+	margin: 0;
+	color: #5c3f2e;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.7;
+}
+
+.about-mosaic {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.5rem;
+}
+
+.mosaic-card {
+	padding: 1.8rem 2rem;
+}
+
+.mosaic-card--story,
+.mosaic-card--beliefs {
+	min-height: 220px;
+}
+
+.mosaic-card--beliefs {
+	background: linear-gradient(180deg, #fff6f1 0%, #f9e7d9 100%);
+}
+
+.mosaic-card--quote {
+	display: grid;
+	align-items: center;
+	justify-items: center;
+	text-align: center;
+	min-height: 220px;
+	background: #fde9d4;
+}
+
+.mosaic-card--wide {
+	grid-column: 1 / -1;
+}
+
+.mosaic-card h3 {
+	margin: 0 0 1rem;
+	font-size: 1.45rem;
+	color: #3a2315;
+}
+
+.mosaic-card p {
+	margin: 0;
+	color: #5e4435;
+	line-height: 1.75;
+}
+
+.mosaic-card ul {
+	margin: 1rem 0 0;
+	padding-left: 1.2rem;
+	color: #5e4435;
+}
+
+.mosaic-card li {
+	margin-bottom: 0.85rem;
+}
+
+.quote-text {
+	margin: 0;
+	font-size: 1.1rem;
+	font-style: italic;
+	line-height: 1.8;
+	color: #5d3e29;
+}
+
+@media (max-width: 900px) {
+	.hero-split,
+	.about-mosaic,
+	.hero-stack {
+		grid-template-columns: 1fr;
+	}
+
+	.hero-card--note,
+	.hero-card--stat,
+	.hero-card--image {
+		min-height: auto;
+	}
+
+	.hero-card--image {
+		grid-column: auto;
+		grid-row: auto;
+	}
+
+	.mosaic-card--wide {
+		grid-column: auto;
+	}
+}
+
+@media (max-width: 600px) {
+	.about-us {
+		padding: 2rem 1rem 3rem;
+	}
+
+	.hero-copy,
+	.hero-card,
+	.mosaic-card {
+		padding: 1.5rem;
+	}
+
+	.hero-tags {
+		flex-direction: column;
+	}
+}
